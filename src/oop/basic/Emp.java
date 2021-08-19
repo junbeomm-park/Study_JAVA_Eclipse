@@ -38,17 +38,20 @@ public class Emp {
     public int getSalary() {
     	return this.salary;
 }
-    public String toString() {
-    	System.out.println(this.name+"("+this.id+")" + "사원의 기본급은" + this.baseSalary + "원 입니다.");
-    	return this.toString;
-    	
+   
+    public String toString()    {
+    	toString = this.name+"("+this.id+")" + "사원의 기본급은" + this.baseSalary + "원 입니다.";
+     	return this.toString;
+ }   	
+  
 
-}
     public int getSalary(int i) {
 	    this.salary = this.baseSalary + this.baseSalary * 30;
 		 return this.salary;
+		 
+		  
+}
 }
 
-}
 
 

@@ -1,9 +1,6 @@
-package statement;
+package oop.basic;
 
 import java.util.Random;
-
-import oop.basic.MyMethod;
-import oop.basic.MyMethodUtil;
 
 //if~else를 연습
 public class IfTest01 {
@@ -15,10 +12,11 @@ public class IfTest01 {
 		//ex) 점수:89(재시험)
 		//    점수:93(합격)
 		Random rand = new Random();
-		MyMethodUtil util = new MyMethodUtil();
 		int num = rand.nextInt(100)+1;
-		//MyMethodUtil클래스에 정의한 scoreCheck호출
-		//MyMethodUtil로 분리한 메소드를 호출해서 결과를 동일하게 확인
-		util.scoreCheck(num);
+		if(num>=90) {
+			System.out.println("점수:"+num+"(합격)");
+		}else {
+			System.out.println("점수:"+num+"(재시험)");
+		}
 	}
 }
