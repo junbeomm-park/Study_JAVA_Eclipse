@@ -17,14 +17,15 @@ public class Rectangle {
 				
 	
 	}
-   
-
+	 
 	public Rectangle(int width, int height) {
 		this.width = width;
 		this.height = height;
 		this.color = "흰색";
 		
 	}
+	
+	
 	public Rectangle () {
 			
 	}
@@ -67,8 +68,7 @@ public class Rectangle {
 
 	public void calculateArea() {
 		this.area = this.width * this.height;
-		
-		
+				
 	}
 
 
