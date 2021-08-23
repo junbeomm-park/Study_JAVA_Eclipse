@@ -1,8 +1,15 @@
 package oop.Inheritance;
 
 public class Person {
-	String name;
-	int age;
+	 private String name;
+	 private int age;
+	public Person() {
+		
+	}
+	public Person(String name, int age) {
+		this.name = name;
+		this.age = age;
+	}
 
 	public void setName(String name) {
 		this.name = name;
@@ -20,5 +27,8 @@ public class Person {
 	public int getAge() {
 		return this.age;
 
+	}
+	public void print() {
+		System.out.print("이 름 : "+getName()+"   나이 : "+this.age);
 	}
 }
