@@ -122,7 +122,7 @@ oop특성
  2. 상속(Inheritance)
  
  
- 3. 다형성
+ 3. 다형성(Polymorphism)
    1) 상속
    2) 객체의 형변환
    3) 추상화
