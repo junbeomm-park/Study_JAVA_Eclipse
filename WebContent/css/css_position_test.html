@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<style type="text/css">
+		#outer{
+			background-color: yellow;
+			width: 500px;
+			position: absolute;
+			top: 100px;
+			left: 100px;
+			height: 500px;
+		}
+		#jang{
+			background-color: #eaf2d3;
+			width: 100px;
+			position: static;  /* 원래 기본 흐름 - (위에서 아래로 배치되면서 왼쪽에서 오른쪽으로 배치)
+			                        -> 좌표프로퍼티를 사용할 수 없다.
+			                        -> 부모의 위치를 기준으로 배치
+			                   */
+			top: 10px;
+			left: 70px;
+		}
+		#kim{
+			background-color: #a7cece;
+			width: 100px;
+			position: relative;  /* 원래 자신의 위치로부터 정의된 좌표의 위치만큼 이동 */
+			top: 10px;
+			left: 70px;
+			margin: 30px;
+			padding-left: 50px;
+		}
+		#lee{
+			background-color: #f0bc2e;
+			width: 100px;
+			position: absolute;  /* 지정된 좌표를 기준으로 배치 - 부모의 위치를 기준으로 이동 */
+			top: 10px;
+			left: 70px;
+		}
+		#hong{
+			background-color: #a0f090;
+			width: 100px;
+			position: fixed;  /* 문서의 왼쪽 위가 기준 - 부모의 위치에 영향을 받지 않고 고정된 위치 */
+			top: 20px;
+			left: 70px;
+		}
+		#jung{
+			background-color: blue;
+			color: white;
+			width: 100px;
+			position: absolute; /* absolute는 도큐먼트 기준이므로 윈도우의 해상도와 상관없이 무조건 보임  */
+			top: 1800px;
+			left: 1000px;
+		}
+		#park{
+			background-color: pink;
+			width: 100px;
+			position: fixed; /* fixed는 윈도우 기준이므로 윈도우의 해상도를 벗어나면 안보임
+								단, 윈도우 해상도 범위 내에서는 고정된 위치로 항상 동일한 자리에 위치
+								떠있는 레이어 */
+			top: 1800px;
+			left: 1000px;
+		}
+	</style>
+</head>
+<body>
+	<div id="outer">
+		<div id="jang">장동건</div>
+		<div id="kim">김어준</div>
+		<div id="lee">이민호</div>
+		<div id="hong">홍길동</div>
+		<div id="jung">정우성</div>
+		<div id="park">박나래</div>
+	</div>
+</body>
+</html>
