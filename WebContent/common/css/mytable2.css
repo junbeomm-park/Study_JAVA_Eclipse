@@ -1,0 +1,32 @@
+@charset "UTF-8";
+
+tr:hover{
+	background-color: #eff9ff;
+}
+tr:link{
+	color: #7ab1ca;
+	text-decoration: none;
+}
+a:visited {
+	color: #f60093;
+}
+table{
+		
+		border-collapse: collapse;
+		border-color: #b8d364;
+		width: 500px;
+		height: 700px;
+		text-align: center;
+		
+}
+th,td{
+	font-size: 10px;
+	height: 20px;
+}
+thead{
+		background-color: #a8ca40;
+		color: white;
+}
+.odd{
+	background-color: #ebf2d4;
+}
