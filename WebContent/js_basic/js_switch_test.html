@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+	</head>
+	<body>
+	<script type="text/javascript">
+		jumsu = prompt("점수를 입력하세요");
+		alert(Math.floor(jumsu/10));
+		if(jumsu<0 | jumsu>100) {
+			System.out.println("잘못입력");
+		}else {
+			//hint : 정수/정수 = 정수
+			switch(Math.floor(jumsu/10)) {
+				case 10:
+				case 9:
+					alert("A학점");
+					break;
+				case 8:
+					alert("B학점");
+					break;
+				case 7:
+					alert("C학점");
+					break;
+				case 6:
+					alert("D학점");
+					break;
+				default:
+					alert("F학점");
+			}
+		}
+		
+	
+
+</script>
+	</body>
+</html>
