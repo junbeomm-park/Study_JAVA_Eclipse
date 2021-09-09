@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+		<script type="text/javascript">
+			function calc() {
+				mynum1 = parseInt(myform1.num1.value); //getter
+				myform1.num2.value = mynum1+10000; //setter
+			}
+			function showdata(currentform) { //현재 작업 중인 form객체를 매개변수로 전달받기
+				mynum1 = parseInt(currentform.num1.value); //getter
+				currentform.num2.value = mynum1+10000; //setter
+			}
+		</script>
+	</head>
+	<body>
+		<form action="" name="myform1">
+			<input type="text" name="num1" onchange="calc()"/>
+			<input type="text" name="num2"/>
+		</form>
+		<form action="" name="myform2">
+			<input type="text" name="num1" onchange="showdata(this.form)"/>
+			<input type="text" name="num2"/>
+		</form>
+		<form action="" name="myform3">
+			<input type="text" name="num1" onchange="showdata(this.form)"/>
+			<input type="text" name="num2"/>
+		</form>
+		<form action="" name="myform4">
+			<input type="text" name="num1" onchange="showdata(this.form)"/>
+			<input type="text" name="num2"/>
+		</form>
+		
+		
+		<img src="../images/ses_g1.jpg" name="myimg" onmouseover="myimg.src='../images/ses_g2.jpg'"
+													onmouseout="myimg.src='../images/ses_g1.jpg'"/>
+	</body>
+</html>
