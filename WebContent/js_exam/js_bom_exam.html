@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+		<script type="text/javascript">
+			function calc() {
+				mynum1 = myform1.num1.value;
+				result = mynum1 * 12900 * 0.9;
+				document.getElementById("num2").innerHTML = result;
+			}
+		</script>
+	</head>
+	<body>
+		<form name="myform1">		
+			수량 : <input type="text" name="num1" onkeyup="calc()"/>
+				<span id="num2" style="color : red;" ></span>
+				  
+		</form>
+		
+		
+		
+		
+	</body>
+</html>
