@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+		<script type="text/javascript">
+			function showTime() {
+				today = new Date();
+				timeVal = today.getHours()+"시";
+				timeVal = timeVal + today.getMinutes()+"분";
+				timeVal = timeVal + today.getSeconds()+"초";
+				myform.time.value = timeVal;
+			    document.getElementById("mytime").innerHTML = timeVal;
+			}
+			function moveSite() {
+			//	window.setTimeout("location.href='https://www.naver.com'", 2000);
+				window.setTimeout(showTime, 3000)
+			}
+			function run() {
+				timeid = window.setInterval(showTime, 1000);
+			}
+			function stop() {
+				clearInterval(timeid);
+			}
+		</script>
+	</head>
+	<body onload="showTime()">
+		<div id="mytime" style="color: red;font-size: 20pt;"></div>
+		<form name="myform">
+			<input type="text" name="time"/>
+			<input type="button" value="시작" onclick="run()"/>
+			<input type="button" value="종료" onclick="stop()"/>
+			<input type="button" value="이동하기" onclick="moveSite()"/>
+		</form>
+		
+		
+	</body>
+</html>
