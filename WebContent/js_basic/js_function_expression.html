@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+	</head>
+	<body>
+		<h1>함수의 표현식</h1>
+		<p>
+			함수를 선언하고 사용할 수 있지만 표현식으로 정의하는 것을 권고
+			표현식으로 정의하면 함수의 호이스팅이 일어나지 않는다.<br/>
+		
+			[형식] - 이름이 있는 함수의 표현식<br/>
+			var 변수명 = function 함수명(매개변수 list){<br/>
+						//실행할 코드<br/>
+					}<br/>
+			[= 연산자를 이용해서 함수를 할당하는 표현]<br/>
+			함수가 할당된 변수가 마치 함수의 이름처럼 쓰여즘 따라서 원래 함수의 이름은 사용할 수 없다.
+			<br/><br/><br/><br/><br/><br/><br/>
+			
+			[형식] - 이름이 없는 함수의 표현식<br/>
+			        -------------------<br/>
+			            익명함수<br/>
+			var 변수명 = function (매개변수 list){<br/>
+						//실행할 코드<br/>
+					}<br/>
+			
+		</p>
+		<form>
+			<input type="button" id="btn" value="버튼"/>
+ 		</form>
+		<script type="text/javascript">
+			//이벤트와 익명함수를 연결
+			//페이지로딩될때	- <body onload="함수명()">
+			//페이지가 로딩될때 btn이라는 id로 정의된 엘리먼트를 찾아서 익명으로 작성된 함수를 btn엘리먼트의 click이벤트에 연결
+			window.onload = function() {
+				alert("페이지로딩");
+				document.getElementById("btn").onclick = function() {
+					alert("버튼이 눌려짐")
+				}
+			}
+			var myfunc1 = function test(num){
+				if(num>90){
+					console.log("합격");
+				}else{
+					console.log("불합격");
+				}			
+			}
+			var myfunc2 = function (num){
+				if(num>90){
+					console.log("합격");
+				}else{
+					console.log("불합격");
+				}			
+			}
+			myfunc1(90);
+			myfunc2(100);
+		</script>
+	</body>
+</html>
