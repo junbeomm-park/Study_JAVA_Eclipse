@@ -72,7 +72,52 @@ jQuery
 	- $("태그명:odd") : 홀수
 	
 5. DOM제어메소드
+	append()->선택된 요소의 last child노드로 추가
+	prepend()->선택된 요소의 first child노드로 추가
+	after()->선택된 요소의 뒤에 새로운 형제노드 추가
+	before()->선택된 요소의 앞에 새로운 형제노드 추가
+	remove()-> 선택된 요소와 그 자식 요소를 삭제
+	empty()->선택된 요소의 자식요소 삭제
 	
+6. setter/getter메소드
+	text() -> 원하는 위치에 텍스트를 추가 - setter/getter모두 사용가능
+				=> div, p, span태그의 텍스트를 반환하거나 텍스트를 설정
+				=> innerHTML로 작업하던 것과 동일
+				=> html태그를 적용할 수 없다.
+	val() -> 입력필드의 값을 반환하거나 설정 - setter/getter 모두 사용 가능
+	html("추가되는 태그") -> 원하는 위치에 html태그를 추가한다.
+							text()는 태그를 문자열로 추가하지만 html()은 태그를 실행한다.
+	css() -> css속성을 설정
+	attr() -> 태그의 속성을 셋팅 DOM의 표준 API메소드에서 setAttribute와 동일
+	
+7.이벤트
+	1) on()을 이용하는 방법 - 정식방법
+		=> bind()의 성능을 개선한 방법 
+		=> 사용자의 선택으로 만들어지는 동적 요소에 이벤트를 연결하기 위해서 사용
+		$("선택자").on("이벤트명",function() {
+		
+		});
+		=> 선택자에 해당하는 요소에 이벤트가 발생하면 익명의 함수를 실행하겠다는 의미
+		
+	2) bind()를 이용
+	3) 이벤트에 대한 약식표현
+	   객체.click()
+	   => 편하지만 동적으로 생성되는 요소에는 사용할 수 없다.
+8.Effect
+	hide() : 선택된 요소를 화면에서 감춘다.
+	animate
+		=> 커스텀 애니메이션을 만들때 사용
+			이동, 효과를 정의하는 것은 모두 css효과를 적용
+			
+		[형식]
+		.animate( properties[, duration ] [, easing ] [, complete ] )
+		properties : { } 로 표현이 가능하며 필수로 지정해야 하는 매개변수 - css속성
+		duration(speed) : 효과가 나타나는 속도를 의미 - 단위 (millisecond)
+		easing : 포인트 이동할때 애니메이션 속도를 지정
+		complete : callback으로 함수명을 명시
+				   animate메소드의 실행이 끝나고 처리해야 하는 코드가 있는 경우 함수명의 정의
+9.jQuery UI
+10.bootstrap
 				  
 			  
 			  
