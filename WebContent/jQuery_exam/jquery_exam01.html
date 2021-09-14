@@ -12,7 +12,7 @@
 			//jQuery의 DOM관련메소드 활용
 			
 			$(document).ready(function(){
-				$("img[src='../images/m_garden01.jpg']").on("mouseover", function() {
+				/* $("img[src='../images/m_garden01.jpg']").on("mouseover", function() {
 					$("img[src='../images/m_garden01.jpg']").after("<br>"+"방문자수:"+Math.round(Math.random()+500));
 					})
 				$("img[src='../images/m_garden02.jpg']").on("mouseover", function() {
@@ -24,7 +24,15 @@
 				$("img[src='../images/m_garden05.jpg']").on("mouseover", function() {
 					$("img[src='../images/m_garden05.jpg']").after("<br>"+"방문자수:"+Math.round(Math.random()+500));
 					})
+				}); */
+				
+				$(".gardenimg").on("mouseover",function() {
+					$(".gardenimg p").remove();
+					count = Math.floor(Math.random()*10+500);
+					myelement = "<p>방문자수:" + count+"</p>";
+					$(this).append(myelement);
 				});
+			});
 				
 			
 		</script>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+		<script type="text/javascript">	
+			//result = mynum1 * 12900 * 0.9;
+			//수량을 입력하면 위와 같이 단가를 적용해서 총 금액을 계산하고 sumval <span>태그에 출력
+			$(document).ready(function(){
+				$("#countVal").on("keyup",function(){
+					myval = parseInt($("#countVal").val())*12900*0.9;
+					$("#sumVal").text(myval);
+					
+				})
+			})
+				
+			
+		</script>
+	</head>
+	<body>
+		<form name="myform1">		
+			수량 : <input type="text" name="count" id="countVal"/>
+				<span id="sumVal" style="color : red;" ></span>
+				  
+		</form>
+		
+		
+		
+		
+	</body>
+</html>
