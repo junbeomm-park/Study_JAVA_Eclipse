@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body>
+	<div id="main">
+		<div class="test1">jquery~~~</div>
+		<div class="test2">jquery~~~~</div>
+		<div id="test3">jquery~~~~</div>
+		<div id="test4">jquery~~~~</div>
+		<div id="test5">jquery~~~~</div>
+	</div>
+	<p>jQuery 연습중...</p>
+	<div id="result"></div>
+	<div id="result2"></div>
+	<form>
+		<input type="number" id="data"/>
+		<input type="number" id="data2"/>
+		<input type="button" id="btn" value="값가져오기"/>
+ 	</form>
+	<script type="text/javascript">
+		
+		$(document).ready(function(){
+			$(".test1").css({"color":"blue","border":"solid 1px red"}); //json표기법
+			$("p").hide();
+			$("#result").text("<h1>div에 값 설정하기 - 텍스트추가</h1>") //setter
+			$("#data").on("keyup",function(){
+				//data <input>태그에서 값을 입력하면 계산 적용된 값이 data2에 출력되도록
+				//data를 읽어와서(getter) data2에 출력(setter)
+				myval = parseInt($("#data").val())+1000; //getter
+				$("#data2").val(myval); //setter
+				//myval에 저장된 값을 result2의 div에 출력
+				$("#result2").text(myval);
+			})
+			$("#btn").on("click",function(){
+				//result <div>태그 사이의 데이터를 읽어와서 alert으로 출력
+				textVal = $("#result").text();//getter
+				alert(textVal);
+			})
+			
+		});
+	</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
