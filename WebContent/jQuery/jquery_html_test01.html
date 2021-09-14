@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body>
+	<div id="main">
+		<div class="test1">jquery~~~</div>
+		<div class="test2">jquery~~~~</div>
+		<div id="test3">jquery~~~~</div>
+		<div id="test4">jquery~~~~</div>
+		<div id="test5">jquery~~~~</div>
+		<a id="attrtest">하이퍼링크</a>
+		<a id="attrtest2">하이퍼링크</a>
+	</div>
+	<div id="result"></div>
+	<form>
+		<input type="button" id="htmlbtn" value="html태그추가하기"/>
+		<input type="button" id="attrbtn" value="속성추가하기"/>
+ 	</form>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			//text() 내부에서 html태그를 실행하지 않으므로 html태그를 실행하고 싶은 경우
+			$("#htmlbtn").on("click",function(){
+				$("#result").html("<h1 style='color:red'>추가되는문자열</h1> ")
+			});
+			$("#attrbtn").on("click",function(){
+				$("#attrtest").attr("href","https://www.naver.com"); //setAttribute
+				//id가 attrtest인 객체(엘리먼트)의 id속성에 저장된 value를 추출하여 alert으로 출력하기
+				// - getAttribute
+				alert($("#attrtest").attr("id"));
+				
+				//속성을 여러 개 정의하고 싶은 경우 - json표기법으로 처리
+				$("#attrtest2").attr({
+						"href":"https://www.daum.net",
+						"target":"_blank"
+				});
+			});
+			
+		});
+	</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
