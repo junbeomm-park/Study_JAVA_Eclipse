@@ -1,0 +1,130 @@
+JDBC(Java DataBase Connectivity)
+=> 자바로 DBMS연동을 하기 위한 기술(java에서 SQL을 실행하기 위해서 API를 제공)
+
+<<오라클에 접속해서 JDBC를 사용하기 전에 해야할일>>
+1. 오라클 드라이버를 다운로드
+ 	- 제조사 홈페이지에서 다운로드(오라클 - www.oracle.com)
+ 	- 오라클 xe가 설치되어 있는 경우
+ 	C:\oraclexe\app\oracle\product\11.2.0\server\jdbc\lib의 
+ 	ojdbc.jar 파일을 드라이버로 이용
+ 	---------
+ 		|__ 오라클 드라이버
+ 		
+2. 오라클드라이버를 JVM이 인식할 수 있도록 설정
+	1) 이클립스가 아닌 경우 (IDE를 사용하지 않는 경우)
+	   - jdk의 lib폴더나 tomcat의 lib에 복사해서 사용해도 되지만 지양
+	   
+	2) 이클립스 사용하는 경우
+	   ① 작업프로젝트를 선택
+	   ② 프로젝트를 선택 후 단축 메뉴를 - [Build path]->[configure Build path..] 선택
+	   ③ 대화상자에서 [Libraries] -> [Modulepath]
+	   ④ [Add External Jars..] 선택 후 라이브러리 파일의 경로를 찾아서 등록
+	                                 ----------------
+	                                   ojdbc.jar(오라클 드라이버)
+	                                   
+<<JAVA API를 이용해서 JDBC연동하기>>
+1. 오라클 드라이버 로딩
+	=> 프린터기 설치 후에 다운로드 받은 드라이버를 설치와 같음
+	=> 오라클 드라이버를 JVM이 인식할 수 있도록 핵심클래스를 메모리에 로딩
+	=> java.lang패키지에 Class라는 클래스를 이용해서 오라클 드라이버의 핵심클래스를 메모리에 로딩
+	   핵심클래스는 어떤 DBMS를 사용하느냐에 따라 달라진다.
+	   
+	   [오라클]
+	   Class.forName("패키지를 포함한 핵심클래스명")
+	   Class.forName("oracle.jdbc.driver.OracleDriver")
+	                 ----------------------------------
+	                 	|
+	                 	|________ 오라클 드라이버명
+	                 	
+	   => 사용자가 드라이버명을 잘못 입력한 경우 예외가 발생할 수 있도록 ClassNotFoundException을 throws하고 있다.
+	   
+	   
+	   [MySQL]
+	   핵심클래스명 : com.mysql.jdbc.Driver
+	   Class.forName("com.mysql.jdbc.Driver")	                 	
+	                                   
+	
+2. DB서버에 연결하기
+   => java.sql패키지의 API를 이용
+   
+   DriverManager의 getConnection이라는 메소드를 이용해서 DB서버에 연결
+   1) static메소드이므로 클래스이름으로 액세스
+   2) throws하고 있는 SQLException은 Exception하위이므로 문법적으로 Exception에 대한 처리를 해야 한다. (try ~ catch를 이용)
+   3) 매개변수
+      url : 연결문자열(어떤 DBMS를 쓰느냐에 따라서 다른 형식의 문자열을 작성해야 한다. : 제조사홈페이지를 참고)
+      	    [오라클]
+      	    jdbc:oracle:thin:@ip@port:데이터베이스 서비스명
+      	    ---------------- -------- ----------------
+      	    오라클에서 사용하는 프로토콜   |           |_오라클 설치할때 셋팅하는 값으로 달라질 수 있으며 express버전은 기본값이 xe
+      	    |                     |
+      	    |                     |___ DBMS가 설치되어 있는 pc의 ip와 오라클이 사용하는 port(1521)
+      	    |_오라클에 접속하기위한 규칙
+	
+	         ex) ip가 121.131.193.103인 경우
+	         	 jdbc:oracle:thin:@121.131.193.103:1521:xe
+	         	 
+	         	 현재 작업 중인 pc에 오라클이 설치되어 있는 경우
+	         	 localhost나 127.0.0.1 사용 가능
+	         	 jdbc:oracle:thin:@127.0.0.1:1521:xe
+	         	 				or
+	         	 jdbc:oracle:thin:@localhost:1521:xe		
+	
+				 user : 사용자계정(scott)
+				 password : 패스워드 (tiger)
+	
+	
+			[mysql의 연결문자열]
+			jdbc:mysql://ip:port/데이터베이스명 (3306)
+	user : root
+	
+	4) 리턴타입
+	   java.sql.Connection을 리턴
+	   DriverManager클래스의 getConnection메소드는 DB서버에 연결하고 연결정보를 객체로 만들어서 리턴한다.
+	   리턴하는 연결정보를 표현해놓은 객체가 java.sql.Connection 표준API는 java.sql.Connection이지만
+	   연결정보를 노출시키면 안되므로 Connection을 상속받은 오라클사에서 만든 Connection의 하위객체가 리턴된다.
+	   Connection은 스펙만 제시하는 인터페이스이고 이를 상속받아서 DBMS제조사에서 작성한 객체를 실제로 사용하는 것
+	   다형이성이 적용되어 있다.
+	   
+	5) 사용방법
+	   Connection con = DriverManager.getConnection(url,user,password)
+	   
+	   => 어떤 DBMS로 접속했는지에 따라서 다른 Connection객체가 리턴되며(모두 java.sql.Connection의 하위로 작성되어 있다.)
+	   	  리턴객체를 받고 있는 참조변수인 con을 이용하면 연결객체의 정보를 사용할 수 있다.
+	
+
+3. SQL을 실행하기 위한 기능을 갖고 있는 객체를 생성
+   [상속구조]
+   +----------------+
+   |	Statement	|               - 정적SQL을 실행(보안에 취약 : SQL Injection공격)
+   +----------------+
+            ^
+            |
+            
+   +-------------------+
+   | PreparedStatement |            - 동적SQL을 실행할때 사용(시큐어코딩에 적합)
+   +-------------------+
+            ^
+            |
+            
+   +-------------------+
+   | CallableStatement |            - 각 DBMS에 특화된 SQL로 작성된 명령문을 실행하는 경우 사용
+   +-------------------+	            오라클:PL-SQL
+	
+	=> SQL을 실행할 수 있는 메소드를 갖고 있는 객체
+	=> 내부적으로 연결정보를 사용하기 때문에 (db서버에 연결한 정보를 알고 있어야 sql명령문 실행할 수 있다.)
+		이 객체들은 Connection객체 내부의 메소드를 통해서 생성해야 한다.
+	1) Statement 객체를 이용
+	   Connection객체가 갖고 있는 createStatement라는 메소드를 이용해서 생성
+	   Statement stmt = con.createStatement()
+	
+4. SQL실행하기	
+   1) Statement를 사용
+   	  ① executeUpdate : insert, update, delete 명령문을 실행
+   	  					매개변수로 sql문을 전달하면 실행결과로 몇 개의 row가 실행 반영되었는지 리턴
+   	  			int result = stmt.executeUpdate("SQL문")
+   	  			----------
+   	  				|
+   	  				|_____ 몇 개의 행이 삽입, 수정, 삭제 되었는지 갯수를 리턴
+	                                   
+
+	                                   
