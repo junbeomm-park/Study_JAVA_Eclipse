@@ -116,6 +116,54 @@ JDBC(Java DataBase Connectivity)
 	1) Statement 객체를 이용
 	   Connection객체가 갖고 있는 createStatement라는 메소드를 이용해서 생성
 	   Statement stmt = con.createStatement()
+	   
+	   
+	2) PreparedStatement객체를 이용
+	   - Connection객체 내부에 정의되어 있는 prepareStatement메소드를 이용해서 생성
+	   - SQL문 실행 순서
+	   	 1) 쿼리문장분석
+	   	 2) 쿼리를 컴파일
+	   	 3) 쿼리를 실행
+	   	 
+	   - 캐시의 사용
+	     Statement는 SQL문을 실행하는 과정에서 매번 반복해서 SQL문을 읽고 실행한다. 즉, 1번부터 3번까지의 작업을 매번 반복해서 작업
+	     PreparedStatement는 한 번만 작업하고 캐시에서 꺼내서 사용한다.
+	                                    -----
+	                                     실행 중에 사용하는 임시저장소
+	                                     
+	     PreparedStatement객체가 SQL문을 실행하는 방식은 미리 SQL문을 파싱해놓고 외부에서 입력받는 값이 있으면 이 값을 문자열로
+	     전달을 해서 실행할 수 있도록 처리하는 방식
+	     Statement로 처리하기 힘든 동적 SQL문을 처리할때 사용
+	     
+	    ① SQL문을 전달 하면서 PreparedStatement객체를 생성
+	      => SQL문을 미리 파싱해놓는 방식이므로 Connection의 prepareStatement메소드를 호출해서 객체를 만들때 SQL문을 전달한다   
+	      PreparedStatement ptmt = con.prepareStatement(SQL문)
+	      
+	    ② 이때 SQL문에서 외부에서 입력받아서 처리하는 부분은 ?로 대체한다.
+	      String sql = "insert into member values(?,?,?,?,1000,?)";
+	      
+	    ③ ?에 대한 값을 설정
+	      ?에 외부에서 전달받는 값(매개변수)을 설정해주어야 SQL문이 완성된다.
+	      PreparedStatement에 있는 setXXXX메소드를 이용해서 작업
+	      ResultSet과 동일한 개념으로 이해
+	      varchar2,char타입의 컬럼에 값을 셋팅하는 경우 : setString
+	      number타입의 컬럼에 값을 셋팅하는 경우 : setInt
+	      Date타입의 컬럼에 값을 셋팅하는 경우 : setDate
+	      	rs.setString(int paramentIndex, String x)
+	      				 -----------------  ---------
+	      				 ?의 index           테이블에 저장될 컬럼의 값
+	      
+	      ptmt.setString(1, "jang") => 첫 번째 ?에 셋팅할 값은 String(문자열)이고 즉, 오라클에서는 varchar2(char)
+	      							   실제로 저장될 값은 'jang'
+	      							   첫 번째 ? jang을 설정해라
+	      							   
+	      							   
+	      							   
+	      							   
+	      	
+	   
+	   
+	   
 	
 4. SQL실행하기	
    1) Statement를 사용
@@ -125,6 +173,106 @@ JDBC(Java DataBase Connectivity)
    	  			----------
    	  				|
    	  				|_____ 몇 개의 행이 삽입, 수정, 삭제 되었는지 갯수를 리턴
-	                                   
+	     
+	  ② executeQuery : select명령문을 실행
+	  				   실행한 후에 조회된 테이블을 리턴 DBMS에서 조회된 테이블을 사용하기 위해 모델링된 자바 객체가 ResultSet이다.
+	  				   실제로는 어떤 DBMS가 사용되었는지에 따라 다른 ResultSet객체 즉, java.sql.ResultSet의 하위객체가 리턴
+   2) PreparedStatement를 사용
+    	① executeUpdate	 : insert, update, delete 명령문을 실행
+    	② executeQuery	: select명령문을 실행
+    	=> 리턴타입이나 실행 모두 Statement와 동일하나 매개변수로 SQL을 전달하지 않는다.	                                    
+5. 결과처리
+	1) insert, delete, update
+		- 모두 int를 리턴하기 때문에 동일한 방법으로 처리
+		int result = stmt.executeUpdate(sql)
+		
+	2) select
+	   sqlplus프로그램을 이용해서 select sql문을 실행하면 결과로 테이블(2차원표의 형태)이 리턴
+	   이 테이블을 자바로 만든 application에서 사용할 수 있도록 모델링 해놓은 클래스가 ResultSet
+	   											   ----------
+	   											     실물을 보고 동일하게 만들어 놓은것
+	   											     사용가능하도록 만들어 놓은 것
+	   											     
+	  ① select sql문을 실행하면 ResultSet을 리턴하기 때문에 ResultSet타입의 변수를 선언해서 결과를 참조
+	    ResultSet rs = stmt.executeQuery(sql)	  
+	  ② ResultSet에 있는 테이블의 데이터를 읽기 위해서 ResultSet이 제공하는 메소드를 이용해서 작업
+	    - 레코드를 탐색하기 위해서 cursor를 레코드로 이동하면서 작업을 해야 한다. 
+	    - 다음레코드로 커서를 이동하는 메소드는 next()이며 next()메소드는 다음레코드로 커서를 이동하며 레코드가 존재하면 true를 리턴하고
+	      레코드가 없으면 false 리턴
+	    - 위의 작업을 테이블의 레코드가 존재하는 동안 반복해서 작업해야 한다.
+	      while(rs.next()) {
+	      		-----------
+	      		레코드가 존재하면 true를 리턴
+	      		
+	      		//레코드를 읽는다.
+	      }
+	      
+	  ① 한 번에 하나의 컬럼만 읽을 수 있다.
+	  	ResultSet이 갖고 있는 getXXXX메소드를 이용해서 컬럼값을 읽을 수 있다.
+	  	- 오라클 타입이 varchar2나 char : java의 String타입과 동일
+	  	  getString(컬럼명) or getString(컬럼의 순서 index)
+	  	                               ---------------
+	  	                                원본 테이블에 정의된 컬럼의 순서가 아니라 
+	  	                                조회된 테이블의 컬럼 순서를 의미
+	  	                                
+	  	- 오라클 타입이 number : java의 int
+	  	  getInt(컬럼명) or getInt(컬럼index)
+	  	  
+	  	- 오라클 타입이 date : java.sql.Date클래스
+	  	  getDate(컬럼명) or getDate(컬럼index)
+	  	  
+	      
+	      while(rs.next()) {   => 커서를 하나씩 다음 레코드로 이동
+	      		                  조회된 레코드 수만큼 반복해서 작업하고 다음레코드가 있는 경우 true를 리턴
+	      		sysout(rs.getString("name") ); => 조회된 레코드 중에서 name이라는 컬럼명으로 정의된 컬럼의 데이터를 읽어서 출력
+	      		sysout(rs.getString(2)); => 조회된 레코드중 두 번째 컬럼의 데이터를 읽어서 출력
+	      		                            ----------
+	      		                            컬럼의 index는 1번부터 시작
+	      		
+	      }
+	         
+6. 자원반납
+   - 클라이언트가 점유해서 사용하던 자원을 반납해야 한다.
+   - Connection, Statement, ResultSet 모두 반납해야 한다.
+                                      ---------
+                                        메모리에서 해제
+   - close메소드를 이용해서 반납하고 객체가 만들어진 순서가 아니라 가장 마지막에 만들어진 객체부터 해제한다.
+   
+   
+   
+member테이블
+	- 회원> 회원가입, 회원정보수정, 회원탈퇴, 로그인, 상세정보조회, 블랙리스트신고
+	- 관리자> 전체목록조회, 우수회원, 검색, 블랙리스트조회, 블랙리스트승인
+	
+	- 동일한 테이블에서 처리해야 하는 기능은 하나의 클래스로 작성한다.	
 
+
+
+
+
+
+
+
+
+
+
+
+
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
 	                                   
