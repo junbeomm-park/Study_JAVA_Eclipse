@@ -8,14 +8,17 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Scanner;
 
+import jdbc.MemberDAO;
+
 public class PreparedStatementDeleteTest {
 	public static void main(String[] args) {
-		PreparedStatementDeleteTest obj = new PreparedStatementDeleteTest();
+		/* PreparedStatementDeleteTest obj = new PreparedStatementDeleteTest(); */
+			MemberDAO dao = new MemberDAO();
 			Scanner key = new Scanner(System.in);
 			System.out.println("삭제할 id : ");
 			String id = key.next();
 			
-			obj.delete(id);
+			dao.delete(id);
 			
 	}
 	
@@ -28,7 +31,7 @@ public class PreparedStatementDeleteTest {
 			sql.append("delete from member ");
 			sql.append("where id=? ");
 			Connection con = null;
-			Statement stmt = null;
+			PreparedStatement stmt = null;
 					
 			
 			try {
@@ -40,10 +43,10 @@ public class PreparedStatementDeleteTest {
 				System.out.println("커넥션성공!"+ con);
 				
 				stmt = con.prepareStatement(sql.toString());
-				((PreparedStatement) stmt).setString(1, id);
+				stmt.setString(1, id);
 				System.out.println("Statement객체 생성완료" + stmt);
 				
-				int result = ((PreparedStatement) stmt).executeUpdate();
+				int result =  stmt.executeUpdate();
 				System.out.println(result+"개 행 삭제성공!");
 			}catch(ClassNotFoundException e) {
 				e.printStackTrace();

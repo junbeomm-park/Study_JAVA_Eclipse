@@ -7,10 +7,13 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Scanner;
 
+import jdbc.MemberDAO;
+
 
 public class PreparedStatementUpdateTest {
 	public static void main(String[] args) {
-		PreparedStatementUpdateTest obj = new PreparedStatementUpdateTest();
+		/* PreparedStatementUpdateTest obj = new PreparedStatementUpdateTest(); */
+			MemberDAO dao = new MemberDAO();
 			Scanner key = new Scanner(System.in);
 			System.out.print("아이디 : ");
 			String id = key.next();
@@ -18,7 +21,7 @@ public class PreparedStatementUpdateTest {
 			System.out.print("주소 : ");
 			String addr = key.next();
 		
-			obj.update(id, addr);
+			dao.update(id, addr);
 			
 			
 	}	

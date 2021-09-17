@@ -7,14 +7,17 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Scanner;
 
+import jdbc.MemberDAO;
+
 
 public class PreparedStatementSelectTest {
 	public static void main(String[] args) {
-		 PreparedStatementSelectTest obj = new PreparedStatementSelectTest();
+		/* PreparedStatementSelectTest obj = new PreparedStatementSelectTest(); */
+			MemberDAO dao = new MemberDAO();
 			Scanner key = new Scanner(System.in);
 			System.out.println();
 			
-			obj.select();
+			dao.select();
 	}
 	 		public void select() {
 			System.out.println("");

@@ -7,10 +7,14 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Scanner;
 
+import jdbc.MemberDAO;
+import jdbc.MemberDTO;
+
 
 public class PreparedStatementInsertTest {
 	public static void main(String[] args) {
-		PreparedStatementInsertTest obj = new PreparedStatementInsertTest();
+		/* PreparedStatementInsertTest obj = new PreparedStatementInsertTest(); */
+		MemberDAO dao = new MemberDAO();
 		Scanner key = new Scanner(System.in);
 		System.out.print("아이디 : ");
 		String id = key.next();
@@ -22,7 +26,9 @@ public class PreparedStatementInsertTest {
 		String addr = key.next();
 		System.out.print("부서번호 : ");
 		String deptno = key.next();
-		obj.insert(id, pass, name, addr, deptno);
+		MemberDTO user = new MemberDTO(id, pass, name, addr, deptno);
+		dao.insert(user);
+		/* dao.insert(id, pass, name, addr, deptno); */
 			
 	}
 	public void insert(String id, String pass, String name, String addr, String deptno) {
