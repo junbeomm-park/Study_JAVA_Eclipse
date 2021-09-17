@@ -2,6 +2,7 @@ package jdbc;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -16,18 +17,20 @@ public class InsertTest {
 			String user = "scott";
 			String password = "tiger";
 			String sql = "insert into member values('lee','1234','이민호','강화',1000,'100')";
-					
+			Connection con = null;
+			Statement stmt = null;	
+			
 			
 			try {
 				//1. 드라이버 로딩
 				Class.forName("oracle.jdbc.driver.OracleDriver");
 				System.out.println("드라이버로딩성공!");
 				//2. DB서버에 커넥션
-				Connection con = DriverManager.getConnection(url,user,password);
+				con = DriverManager.getConnection(url,user,password);
 				System.out.println("커넥션성공!"+ con);
 				//3. SQL을 실행하는 기능을 갖고 있는 객체 Statement생성
 				//   => java.sql.Statement지만 내부적으로 맵핑되는 객체는 oracle제조사에서 만든 클래스 타입
-				Statement stmt = con.createStatement();
+				stmt = con.createStatement();
 				System.out.println("Statement객체 생성완료" + stmt);
 				//4. SQL실행
 				int result = stmt.executeUpdate(sql);
@@ -36,7 +39,13 @@ public class InsertTest {
 				e.printStackTrace();
 			} catch (SQLException e) {
 				e.printStackTrace();
-			}
+			}finally {
+				}try {
+					if(stmt!=null) stmt.close();
+					if(con!=null) con.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
 		}
 	}
 
