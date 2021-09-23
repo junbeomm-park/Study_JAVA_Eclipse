@@ -5,8 +5,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 import jdbc.DBUtil;
+import jdbc.MemberDTO;
 
 public class MyDeptDAO {
 	public void insert(MyDeptDTO user) {
@@ -119,6 +121,86 @@ public class MyDeptDAO {
 		}finally {
 			DBUtil.close(rs, stmt, con);
 		}
+	}
+	public ArrayList<MyDeptDTO> getDeptList() {
+		
+		ArrayList<MyDeptDTO> deptlist = new ArrayList<MyDeptDTO>();
+		
+		String sql = "select * from mydept";
+		
+		Connection con = null;
+		Statement stmt = null;
+		ResultSet rs = null;
+		try {
+			con = DBUtil.getConnect();
+			stmt = con.createStatement();
+			rs = stmt.executeQuery(sql.toString());
+			while(rs.next()) {
+				System.out.print(rs.getString(1)+"\t");
+				System.out.print(rs.getString(2)+"\t");
+				System.out.print(rs.getString(3)+"\t");
+				System.out.println(rs.getString(4)+"\t");
+				
+			}	
+			System.out.println("조회성공 ~!~!~!!%#!@#");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			DBUtil.close(rs, stmt, con);
+		}
+		return deptlist;
+}
+	
+	
+	public ArrayList<MyDeptDTO> findByDeptName(String deptname) {
+		ArrayList<MyDeptDTO> deptlist = new ArrayList<MyDeptDTO>();
+		
+		String sql = "select * from mydept where deptname = ?";
+		
+		Connection con = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		try {
+			con = DBUtil.getConnect();
+			stmt = con.prepareStatement(sql);
+			stmt.setString(1, deptname);
+			
+			
+			System.out.println("조회성공 ~!~!~!!%#!@#");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			DBUtil.close(rs, stmt, con);
+		}
+		return deptlist;
+	}
+	
+	
+	public ArrayList<MyDeptDTO> findByLoc(String loc) {
+		ArrayList<MyDeptDTO> deptlist = new ArrayList<MyDeptDTO>();
+		
+	
+		
+		StringBuffer sql = new StringBuffer();
+		sql.append("select * from mydept where loc = ?");	
+		Connection con = null;
+		Statement stmt = null;
+		ResultSet rs = null;
+		try {
+			con = DBUtil.getConnect();
+			stmt = con.createStatement();
+			rs = stmt.executeQuery(sql.toString());
+			while(rs.next()) {
+				System.out.println(rs.getString(1)+"\t");
+				
+			}	
+			System.out.println("조회성공 ~!~!~!!%#!@#");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			DBUtil.close(rs, stmt, con);
+		}
+		return deptlist;
 	}
 }
 
