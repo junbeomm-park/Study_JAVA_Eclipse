@@ -5,9 +5,11 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import jdbc.MemberDAO;
+import jdbc.MemberDTO;
 
 
 public class PreparedStatementSelectTest {
@@ -17,8 +19,19 @@ public class PreparedStatementSelectTest {
 			Scanner key = new Scanner(System.in);
 			System.out.println();
 			
-			dao.select();
+			ArrayList<MemberDTO> userlist = dao.getMemberList();
+			for (int i = 0; i < userlist.size(); i++) {
+				MemberDTO user = userlist.get(i);
+				System.out.print(user.getId()+",");
+				System.out.print(user.getPass()+",");
+				System.out.print(user.getName()+",");
+				System.out.print(user.getAddr()+",");
+				System.out.print(user.getPoint()+",");
+				System.out.println(user.getDeptno()+",");
+				
+			}
 	}
+
 	 		public void select() {
 			System.out.println("");
 		 	String url = "jdbc:oracle:thin:@121.131.193.103:1521:xe";
