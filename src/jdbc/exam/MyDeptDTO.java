@@ -24,6 +24,9 @@ public class MyDeptDTO {
 		this.mgr = mgr;
 	}
 
+	public MyDeptDTO(String string) {
+		// TODO Auto-generated constructor stub
+	}
 	public String toString() {
 		return "MyDeptDTO [deptno=" + deptno + ", deptname=" + deptname + ", loc=" + loc + ", mgr=" + mgr + "]";
 	}
