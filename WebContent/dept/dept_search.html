@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+	</head>
+	<body>
+		<form method="post" action="/serverweb/mydept/search.do">
+			검색:
+			<select name="category">
+				<option value="deptname">부서명</option>
+				<option value="loc">위치</option>
+				<option value="mgr">관리자</option>
+			</select>
+			<input type="text" name="search">
+			<input type="submit" value="검색"/>
+		</form>
+	</body>
+</html>
