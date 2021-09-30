@@ -11,6 +11,9 @@
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 </head>
 <body>
+<div class="container">
+	<jsp:include page="../template/top.jsp"></jsp:include>
+	<br><br>
 	<% 
 		//서블릿이 공유해준 데이터를 꺼내기
 		MemberDTO user = (MemberDTO)request.getAttribute("user");
@@ -84,6 +87,7 @@
 					</div>
 				</fieldset>
 			</form>
+	</div>
 	</div>
 </body>
 </html>
