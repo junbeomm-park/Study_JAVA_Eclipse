@@ -1,0 +1,71 @@
+<<요청재지정>>
+클라이언트로 부터 최초로 받은 요청을 실행하고 새로운 요청을 하는 방법
+화면을 분리하고 분리된 화면으로 응답하기 위해 필요한 기술
+
+MVC패턴을 이해하고 개발하기 위해 반드시 필요한 개념
+
+1. 데이터공유
+	서블릿에서 발생한 데이터를 요청재지정하는 뷰로 넘겨주기 위해서 데이터를 서블릿에서 공유해야 한다.
+	page, request, session, application객체의 내부에 존재하는 map구조의 저장소에 공유할 수 있다.
+														--------
+														name과 value를 저장하기
+	page(this - 현재jsp페이지에서만 공유) -> javax.servlet.jsp.PageContext
+	request(요청객체 - 한 번의 request가 응답되는 동안 실행되는 객체들이 공유) -> HttpServletRequest
+	session(세션객체 - 세션이 생성된 순간 브러우저에서 보여지는 모든 웹 페이지에서 데이터를 공유) -> HttpSession
+	                 ----------------------------------------------------------
+	                 			로그인한 사용자가 내부에서 보는 모든 페이지에서 데이터를 공유
+	application(context객체 - 톰캣메모리에 공유 톰캣에서 실행되는 모든 웹 페이지에서 공유) -> ServletContext
+	                         ----------------------------
+	                         로그인하지 않은 모든 사용자가 공유해서 사용(별로 사용되지 않는다.)
+	                         
+	1) 데이터저장
+	   객체.setAttribute("저장할attribute의 이름",저장할객체)
+	   										  ---------
+	   page,requset,session,application		  java.lang.Object
+	   										  => 자바에서 쓰는 모든 객체는 공유가 가능하다.
+	   										  
+    2) 데이터가져오기
+       Object 변수 = 객체.getAttribute("공유된 attribute의 이름")
+              ----
+              공유된 객체가 저장(type casting해서 사용하기)
+              	   										  	                         	                 																	
+2. 요청재지정
+	1) redirect
+	   [문법]
+	   HttpServletResponse의 sendRedirect메소드를 이용해서 처리
+	   response.sendRedirect("요청재지정될 web application의 path")
+	                         ----------------------------------
+	                         	서블릿, jsp, html, 웹사이트 주소
+	                         	/context명/폴더명../요청할 application명
+	                         	                  -------------------
+	                         	                  	html,jsp파일 : 파일명
+	                         	                  	서블릿 : 서블릿맵핑명
+	   [개요]
+	   최초 요청된 서블릿이 response된 후 재요청하는 방법이므로 데이터를 공유할 수 없다.(Http프로토콜은 한 번 response하면 상태정보가 유지되지 않는다.)
+	                                                                                                   ----------------
+	                                                                                                   공유된 데이터가 지워진다.
+	                                                                                                   요청을 할때마다 서버가
+	                                                                                                   새로운 요청객체를 만든다.
+	   	                                                                                                   	                         	                  	
+	
+	2) forward
+	   [문법]
+	   RequestDispatcher rd = request.getRequestDispatcher("요청재지정으로 실행할 application의 path");
+	                                                       -------------------------------------
+	                                                       	context명 제외한 path
+ 	   rd.forward(request객체, response객체)
+ 	   
+ 	   [개요]
+ 	   최초 요청된 서블릿이 실행된 후 응답하지 않은 상태에서 요청재지정으로 명시된 application이 응답
+ 	   한 번의 요청으로 모든 application을 실행
+ 	   따라서 데이터 공유가 가능	                                                       	
+	
+	
+	3) include
+	
+	
+	
+	
+	
+	
+	
