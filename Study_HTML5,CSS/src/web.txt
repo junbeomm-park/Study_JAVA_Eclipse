@@ -1,0 +1,86 @@
+1. 웹 환경 구축하기
+   1) dynamic web project만들기
+      - 폴더구조를 확인
+   2) 서버등록
+      - 톰캣서버를 등록
+      - 톰캣이 이클립스 밖에서 실행되고 있으면 이클립스에서는 실행할 수 없다.
+      - 이클립스 외부에서 실행되던 서버를 이클립스 내에서 실행되도록 등록
+      - context를 서버로 배포
+        * sever.xml에 <context>가 추가된다.
+        * 실제위치
+        C:\bigdata_iot\work\webwork\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps
+        => 이클립스 위에서 작업을 하면 자동으로 서버가 인식하는 위치에 파일이 copy된다.
+           혹은 자바 파일인 경우 자동으로 컴파일 되어 서블릿디렉토리(classes)에 copy
+                             --------------------------
+                             이클립스에 포함된 빌드툴인 Ant가 실행
+      - 실행
+        * internal web
+        * external 브라우저로 변경
+   3) 문자셋설정
+      - utf-8
+      - dynamic web project
+      - jsp 문서
+      - html 문서
+   4) 실행하기
+   
+   
+2. html
+   1) 기본태그
+      h1~h6, p, br, b, i, font, img, a
+      
+   2) <img>
+      - 이미지를 웹 페이지에 추가하기 위해서 사용
+      [문법]
+      <img src="이미지의 경로" width="이미지의 가로사이즈" height="이미지의 세로 사이즈">
+      
+      [이미지 경로]
+       - 파일탬색기에서 확인할 수 있는 파일의 경로를 사용하면 안된다.
+       C:\bigdata_iot\work\webwork\clientweb\WebContent\images    --------  X
+       - 웹에서 요청하는 방식을 이용
+      ① 절대경로
+       - 경로를 모두 명시
+         <img src="http://localhost:8088/clientweb/images/view.jpg"/>
+                  -----------------------
+                         root 상태
+         <img src="/clientweb/images/view.jpg"/>
+      ② 상대경로
+        <img src="clientweb/images/view.jpg"/>
+        현재 작업 위치에서 시작하라는 의미
+        
+        . => 현재위치
+        <img src="./clientweb/images/view.jpg"/>
+        
+        .. => 상위디렉토리
+        <img src="../images/view.jpg"/>
+        
+   3) 목록관련태그
+   	  => 사이트제작시 메뉴로 많이 활용, 테이블구조와 같이 즉, 쇼핑몰의 상품보기 같이 반복되어 출력되는 구조에 활용
+   	  순서가 없는 목록, 순서가 있는 목록
+   	  	  
+   	  
+   4) 테이블관련태그
+   5) 양식태그
+      - 서버와 통신하기 위해서 사용하는 태그(서버로 클라이언트가 입력하거나 선택한 내용을 전송하기 위해서 사용)
+      - 무조건 <form>></form>사이에 정의해야 한다. (그래야 서버로 데이터가 전송)
+      - 양식태그의 종류
+        * 텍스트관련 양식태그
+        * 버튼
+          submit - 이 버튼을 누르면 <form></form>사이의 모든 양식 태그를 통해 클라이언트가 입력하거나 선택한 값이 서버로 전송된다.
+                   전송되는 데이터의 형식은 name=value
+                                      ---- ------
+                                      name : 태그안에 name속성으로 정의한 이름
+                                      value : 사용자가 입력한 값
+                                     
+                                      
+        * 선택기능
+      - 서버로 데이터를 전송하기 위해서 값을 구분할 수 있ㄲ도록 반드시 name속성을 정의해야 한다.
+   6) html5요소
+        
+        
+        
+        
+        
+        
+        
+        
+        

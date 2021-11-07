@@ -1,0 +1,7 @@
+@charset "UTF-8";
+p{  
+	font-size: 11pt;
+	background-color: yellow;
+	border: blue solid;
+	color: pink;
+}

@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Insert title here</title>
+		<meta charset="UTF-8">
+		  <meta name="viewport" content="width=device-width, initial-scale=1">
+ 		  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  		  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  		  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+		  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+		  	<style type="text/css">
+		  		[class*=col-md-3]{
+		  		
+ 				background-color: #fc8c03;
+ 				text-align: center;
+ 				align-content: center;
+ 				
+ 				
+ 				}
+ 				.container{
+   				width: 50%; 				
+ 				}
+ 				.container2{
+ 				margin-left: 600px;
+ 				width: 40%;
+ 				}
+ 				#choice{
+ 				text-align: center;
+ 				}
+ 				
+		  	
+		  	
+		  	</style>
+		  	<script type="text/javascript">
+		  		$(document).ready(function(){
+		  			count = $("#moneycount").val();
+		  			
+		  			
+		  			$("#50000").on("click", function(){
+		  				count = parseInt(count)+50000
+		  				$("#moneycount").val(count);
+		  			})
+		  			$("#10000").on("click", function(){
+		  				count = parseInt(count)+10000
+		  				$("#moneycount").val(count);
+		  			})
+		  			$("#5000").on("click", function(){
+		  				count = parseInt(count)+5000
+		  				$("#moneycount").val(count);
+		  			})
+		  			
+		  			
+		  		    $("#garadong").on("click", function(){
+		  				if(count >= 3500) {
+		  					count = count - 3500;
+		  					$("#moneycount").val(count);
+		  					$("#choice").text("가라동을 구매하셨습니다. (-3500원)")
+		  					
+		  				}else if(count < 3500) {
+		  					$("#choice").text("금액을 충전하세요.")
+		  				}
+		  			})
+		  			$("#shin").on("click", function(){
+		  				if(count >= 2500) {
+		  					count = count - 2500;
+		  					$("#moneycount").val(count);
+		  					$("#choice").text("신라면을 구매하셨습니다. (-2500원)")
+		  				}else if(count < 2500) {
+		  					$("#choice").text("금액을 충전하세요.")
+		  				}
+		  			})
+		  			$("#mayo").on("click", function(){
+		  				if(count >= 5500) {
+		  					count = count - 5500;
+		  					$("#moneycount").val(count);
+		  					$("#choice").text("치킨마요 + 아이스티를 구매하셨습니다. (-5500원)")
+		  				}else if(count < 5500) {
+		  					$("#choice").text("금액을 충전하세요.")
+		  				}
+		  			})
+		  			$("#latte").on("click", function(){
+		  				if(count >= 2000) {
+		  					count = count - 2000;
+		  					$("#moneycount").val(count);
+		  					$("#choice").text("카페라떼 구매하셨습니다. (-2000원)")
+		  				}else if(count < 2000) {
+		  					$("#choice").text("금액을 충전하세요.")
+		  				}
+		  			})
+		  			$("#chicken").on("click", function(){
+		  				if(count >= 3500) {
+		  					count = count - 3500;
+		  					$("#moneycount").val(count);
+		  					$("#choice").text("치킨꼬치를 구매하셨습니다. (-3500원)")
+		  				}else if(count < 3500) {
+		  					$("#choice").text("금액을 충전하세요.")
+		  				}
+		  			})
+		  			$("#tumsae").on("click", function(){
+		  				if(count >= 2500) {
+		  					count = count - 2500;
+		  					$("#moneycount").val(count);
+		  					$("#choice").text("틈새라면을 구매하셨습니다. (-2500원)")
+		  				}else if(count < 2500) {
+		  					$("#choice").text("금액을 충전하세요.")
+		  				}
+		  			})
+		  			$("#jeyouk").on("click", function(){
+		  				if(count >= 5000) {
+		  					count = count - 5000;
+		  					$("#moneycount").val(count);
+		  					$("#choice").text("제육덮밥을 구매하셨습니다. (-5000원)")
+		  				}else if(count < 5000) {
+		  					$("#choice").text("금액을 충전하세요.")
+		  				}
+		  			})
+		  			$("#caramell").on("click", function(){
+		  				if(count >= 2000) {
+		  					count = count - 2000;
+		  					$("#moneycount").val(count);
+		  					$("#choice").text("아이스마끼야또를 구매하셨습니다. (-2000원)")
+		  				}else if(count < 2000) {
+		  					$("#choice").text("금액을 충전하세요.")
+		  				}
+		  			})
+		  			$("#change").on("click", function(){
+		  				count = 0;
+		  					$("#moneycount").val(count);
+		  					$("#choice").text("잔액이 반환 되었습니다")
+		  			})
+		  		})
+		  	
+		  	</script>
+		
+	</head>
+	<body>
+		<h1 style="text-align: center">PC방 Snackbar</h1>
+		<div class="container">
+	  	<div class="row">
+	        <div class="col-md-3">
+	            <img src="../images/garadong.png" style="width: 100%; margin-top: 15px" /> <br/>
+	           <button type="button" class="btn btn-success" id="garadong">3500원</button>
+	                
+	           
+	        </div>
+	        <div class="col-md-3">
+	            <img src="../images/shin.png" style="width: 100%; margin-top: 15px"/> <br/>
+	            <button type="button" class="btn btn-primary" id="shin">2500원</button>
+	            
+	        </div>
+	        <div class="col-md-3">
+	            <img src="../images/mayo.png" style="width: 100%; margin-top: 15px"/> <br/>
+	            <button type="button" class="btn btn-danger" id="mayo">5500원</button>
+	                
+	            
+	        </div>
+	        <div class="col-md-3">
+	            <img src="../images/latte.png" style="width: 100%; margin-top: 15px"/> <br/>
+	            <button type="button" class="btn btn-default" id="latte">2000원</button>
+	        </div>
+	
+	    </div> <br/>
+	  	<div class="row">
+	        <div class="col-md-3">
+	            <img src="../images/chicken.jpg" style="width: 100%; margin-top: 15px"/> <br/>
+	            <button type="button" class="btn btn-success" id="chicken">3500원</button>
+	                
+	            
+	        </div>
+	        <div class="col-md-3">
+	            <img src="../images/tumsae.jpg" style="width: 100%; margin-top: 15px"/> <br/>
+	            <button type="button" class="btn btn-primary" id="tumsae">2500원</button>
+	        </div>
+	        <div class="col-md-3">
+	            <img src="../images/jeyouk.jpg" style="width: 100%; margin-top: 15px"/> <br/>
+	            <button type="button" class="btn btn-danger" id="jeyouk">5000원</button>
+	                
+	            
+	        </div>
+	        <div class="col-md-3">
+	            <img src="../images/caramell.jpg" style="width: 100%; margin-top: 15px"/> <br/>
+	            <button type="button" class="btn btn-default" id="caramell">2000원</button>
+	                
+	           
+	        </div>
+	    </div>
+	  </div> 
+	  <div class="container2"> 
+	    <span class="side"><br/><br/>
+	    	<img src="../images/50000.jpg" style="width: 20%" id="50000"/>
+	    </span>
+	    <span>
+	    	<img src="../images/10000.jpeg" style="width: 20%" id="10000"/>
+	    </span>
+	    <span>
+	    	<img src="../images/5000.jpeg" style="width: 20%" id="5000"/>
+	    </span>
+	   </div>
+	   
+	   	<div class="won" style="text-align: center"><br/><br/>투입금액</div><br/>
+	   	<input id="moneycount" style="margin-left: 680px;" type="number" value="0" readonly/><span class="won">원</span>
+	   	
+	   	
+	   	<p id="choice"></p><br/>
+	   	
+	   	<button type="button" class="btn btn-danger" id="change" style="margin-left: 730px;">잔돈반환</button>
+	   	
+		
+	</body>
+</html>

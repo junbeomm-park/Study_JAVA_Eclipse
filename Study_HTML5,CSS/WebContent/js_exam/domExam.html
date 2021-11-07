@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+		<script type="text/javascript">
+			function insertP() {
+				pNode = document.createElement("p");
+				pNode.setAttribute("style","background:yellow")
+				textNode = document.createTextNode("new line");
+				pNode.appendChild(textNode);
+				/* parentNode = document.getElementById("root");
+				targetNode = document.getElementById("insertP()");
+				parentNode.insertBefore(pNode,targetNode); */
+				
+				//parent node 찾기
+				parentNode = document.getElementById("root");
+				//parent node에 추가하기
+				parentNode.appendChild(pNode);
+				
+			}
+			
+			function deleteP() {
+				/* deletePNode = document.getElementById("root");
+				deleteNode = deletePNode.firstChild;
+				deletePNode.removeChild(deleteNode); */
+				
+				//삭제할 노드의 parent node 찾기
+				parentNode = document.getElementById("root");
+				//parnentnode의 child를 삭제
+				parentNode.removeChild(parentNode.lastElementChild);
+			}
+			function deleteDivAndP(){
+			/* 	alldeleteNode = document.getElementById("root");
+				while (root.hasChildNodes()){
+					root.removeChild(root.firstChild); */
+					
+				//div노드의 하위노드를 지우기
+				//1. parent노드 구하기
+				parentNode = document.getElementById("root")
+				//2. parent노드의 자식노드 구하기
+				childNodelist = parentNode.childNodes;
+				size = childNodelist.length;
+				for (i = 0; i<size; i++) {
+					parentNode.removeChild(parentNode.lastChild);
+					
+				}
+				
+			}
+			
+		</script>
+	</head>
+	<body>
+		<div id="layer"></div>
+	
+		<hr>
+	
+		<div id="root"><p style="background: gray;">line01</p><p style="background: skyblue">line02</p><p style="background: green;">line03</p><p style="background: red;">line04</p></div>
+	
+		<hr>
+		<button onclick="insertP()">P태그추가하기</button>
+		<button onclick="deleteP()">P태그삭제하기</button>
+		<button onclick="deleteDivAndP()">div안의 모든 p태그 삭제하기</button>
+		<input type="file" />
+	
+	
+	
+	</body>
+</html>

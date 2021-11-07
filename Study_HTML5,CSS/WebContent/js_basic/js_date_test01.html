@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			//브라우저의 자바스크립트 실행 엔진 내부에 built in으로 내장되어 있는 객체
+			today = new Date(); 
+			document.write(today);
+			str = today.getFullYear()+"년 ";
+			str = str + (today.getMonth()+1)+"월";
+			str = str + today.getDate()+"일";
+			str = str + today.getHours()+"시";
+			str = str + today.getMinutes()+"분";
+			str = str + today.getSeconds()+"초";
+			day = today.getDay(); //getDay는 요일번호를 구하기
+			document.write("<h2>"+str+":"+day+"</h2>")
+			
+			
+			
+		/* 	switch(day){
+			case 0:
+				document.write("<img src=/clientweb/images/jang1.jpg>");
+				break;	
+			case 1:
+				document.write("<img src=/clientweb/images/jang2.jpg>");
+				break;	
+			case 2:
+				document.write("<img src=/clientweb/images/jang3.jpg>");
+				break;		
+			case 3:
+				document.write("<img src=/clientweb/images/jang4.jpg>");
+				break;		
+			case 4:
+				document.write("<img src=/clientweb/images/jang5.jpg>");
+				break;
+			case 5:
+				document.write("<img src=/clientweb/images/jang6.jpg>");
+				break;
+			case 6:
+				document.write("<img src=/clientweb/images/jang7.jpg>");
+				break;		
+			} */
+			document.write("<img src=/clientweb/images/jang"+(day+1)+".jpg /><br/>");
+			document.write(today.toLocaleDateString());
+		</script>
+		
+	</body>
+</html>

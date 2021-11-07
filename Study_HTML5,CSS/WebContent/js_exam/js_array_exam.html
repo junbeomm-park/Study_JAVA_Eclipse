@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			today = new Date();
+		/* 	myarr = new Array(0,1,2,3,4,5,6); */
+			myarr = ["일요일","월요일","화요일","수요일","목요일","금요일","토요일"];
+			day = today.getDay();	
+			document.write(today.toLocaleDateString()+" "+myarr[day]);
+			
+			
+			dday = new Date();
+			dday.setMonth(8);
+			dday.setDate(13);
+			document.write("<br/>"+dday.toLocaleDateString());
+			
+		</script>
+		
+	</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+	</head>
+	<body>
+		<!-- html5에서 audio, video를 추가 -->
+		<!-- 비디오테스트 -->
+		<video controls width="500" height="400" autoplay>
+			<source src="/clientweb/images/media/KakaoTalk_20210901_131241508.mp4" type="video/mp4">
+		</video>
+		<!-- 오디오테스트 -->
+		<audio controls="controls">
+			<source src="../images/media/Skidrow.mp3" type="audio/mpeg">
+		</audio>
+		<!-- iframe을 이용하면 XSS공격에 취약해진다.   X -->
+		<iframe width="560" height="315"
+			src="https://www.youtube.com/embed/feFYfsKUGRM"
+			title="YouTube video player" frameborder="0"
+			allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+			allowfullscreen></iframe>
+	</body>
+</html>

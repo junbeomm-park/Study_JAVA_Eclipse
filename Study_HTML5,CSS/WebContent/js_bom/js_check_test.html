@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script type="text/javascript">
+		//name속성이 food인 경우 체크박스를 모두 선택/해제 하는 작업을 실행하는 함수
+		function allcheck() {
+			//food라는 이름으로 정의된 체크박스가 여러 개 -> 배열로 관리
+			mychecklist = document.cbfmt.food;
+			//alert(mychecklist);
+			//alert(mychecklist.length);
+			//allchk라는 이름으로 정의된 체크박스의 값을 가져오기
+			allchkVal = document.cbfmt.allchk.checked;
+			//alert(allchkVal);
+			//allchk값이 true이면 food의 모든 nodelist의 체크값을 true로 변경
+			//allchk값이 false이면 food의 모든 nodelist의 체크값을 false로 변경
+			for (var i = 0; i < mychecklist.length; i++) {
+				mychecklist[i].checked = allchkVal;
+			}
+			
+		}
+	</script>
+
+</head>
+<body>
+	
+		<form name="cbfmt">
+			<label>아이스크림</label> <input type="checkbox" name="food" value="아이스크림" id="ice"> 
+			<label>커피</label> <input type="checkbox"name="food" value="커피" id="coffee">
+		    <label>음료수</label> <input type="checkbox" name="food" value="음료수" id="beverage"> 
+			<label>모두체크/해제</label>
+			<input type="checkbox" name="allchk" id="allchk" onclick="allcheck()"><br>
+
+			<input type="button" value="전송" onclick="ckFunc()">
+		</form>
+		<div id="result"></div>
+	
+</body>
+</html>

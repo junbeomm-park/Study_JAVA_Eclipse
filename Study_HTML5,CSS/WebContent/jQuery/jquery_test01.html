@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<link rel="stylesheet" href="../common/css/my_style.css">
+	<!-- <script type="text/javascript" 
+				src="../common/js/jquery-3.6.0.min.js"></script> -->
+				<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> <!-- CDN -->
+				
+</head>
+<body>
+	<div id="clickMe">여기를 누르세요.</div>
+	<div id="picframe">
+		<img src="../images/m_garden01.jpg"/>
+	</div>
+	<script type="text/javascript">
+	     /* 브라우저가 DOM객체를 내부에서 다 만들고 나면 작업을 시작하겠습니다.
+	                                         ---------
+	                                          익명의 함수를 실행*/
+		$(document).ready(function(){
+			$("#clickMe").click(function(){ // clickMe 라는 id로 정의되어 있는 엘리먼트가 클릭되면
+				                            // 익명의 함수를 실행
+				$("#picframe").slideToggle(); // picframe이라는 id로 정의되어 있는 엘리먼트에 slideToggle기능을 실행하도록 처리
+			})	
+		})
+	</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+

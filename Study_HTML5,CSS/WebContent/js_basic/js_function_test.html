@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+		<!-- 함수 선언하기 -->
+		<script type="text/javascript">
+			//1. 리턴값이 없고 매개변수가 없는 함수
+			function test1(){
+				num1 = 100;
+				num2 = 200;
+				alert("test1의 결과 ==>"+(num1+num2));
+			}
+			//2. 리턴값이 있고 매개변수가 없는 함수
+			//=> 리턴값이 있는 경우 자바처럼 return명령문을 이용해서 값을 리턴하면 된다. 데이터타입을 정의하지 않으므로 리턴타입을
+			//   함수에 명시하지 않을뿐 자바와 통일
+			function test2(){
+				num1 = 100;
+				num2 = 200;
+				result = num1+num2;
+				return result;
+			}
+			//3. 리턴값이 없고 매개변수가 있는 함수
+			function test3(num1, num2){
+				result = num1+num2;
+				alert("test3의 결과 ==>"+(num1+num2));
+			}
+			//4. 리턴값이 있고 매개변수가 있는 함수
+			function test4(num1, num2){
+				result = num1+num2;
+				return result;
+			}
+		</script>
+	</head>
+	<body>
+		<!-- 정의한 함수를 사용 -->
+		<script type="text/javascript">
+			//<head>태그에서 선언한 함수를 호출
+			//1. 리턴값이 없고 매개변수가 없는 함수를 호출
+			test1();
+			//2. 리턴값이 있고 매개변수가 없는 함수의 호출 => 리턴값이 있으므로 함수의 호출결과를 변수를 선언해서 할당해준다.
+			returnVal = test2();
+			document.write("실행결과=>"+returnVal);
+			//3. 리턴값이 없고 매개변수가 있는 함수의 호출
+			test3(200,300);
+			//4. 리턴값이 있고 매개변수가 있는 함수의 호출
+			//=> 매개변수에 해당하는 값을 사용자로부터 입력받아 사용하기
+			num1 = window.prompt("숫자1을 입력:");
+			num2 = window.prompt("숫자2를 입력:");
+			window.alert(test4(window.parseInt(num1),parseInt(num2)));
+		</script>
+		<!-- 버튼을 눌러 함수를 호출 -->
+		<input type="button" value="함수호출" onclick="test1()">
+	</body>
+</html>

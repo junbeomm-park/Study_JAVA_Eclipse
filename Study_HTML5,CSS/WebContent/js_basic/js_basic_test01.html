@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+		<!-- 4. 외부문서로 만들어진 자바스크립트 파일을 연결하여 사용 -->
+		<script type="text/javascript" src="/clientweb/common/js/first.js"></script>
+		<!-- 2. <head>태그 안에 함수를 정의하고 필요한 곳에서 호출해서 사용하는 방법	 -->
+		<script type="text/javascript">
+			document.write("head태그 내부");
+			function test() {
+				alert("테스트");
+				
+			}
+		</script>
+	</head>
+	<body>
+		<!-- 1. body태그 안에 정의하고 사용하는 방법 -->
+		<script type="text/javascript">
+			document.write("<h1>브라우저에 데이터 출력하기 - 연습용</h>")	
+			test();
+		</script>
+		<!-- 3. 태그 내부에서 inline으로 삽입(이벤트 핸들러에 연결) -->
+		<input type="button" value="자바스크립트 호출" onclick="test()">
+		<!--  a태그에 자바스크립트 함수를 연결하는 경우 경로로 인식하지 않고 자바스크립트 함수로 인식할 수 있도록 
+			  javascript:을 접두사로 연결                                                      -->
+		<a href="javascript:test()">테스트</a>	
+		<!-- 4. 외부문서에 정의된 test2함수를 호출 -->
+		<input type="button" value="외부 문서에 저장된 자바스크립트 함수 호출" onclick="test2()">
+	
+		
+	</body>
+</html>

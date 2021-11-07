@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+		<script type="text/javascript">
+			/* 	자바스크립트에서 전역변수와 지역변수를 정의할 수 있다.
+				지역변수, 전역변수의 정의방법과 활용*/
+				//변수가 선언되는 위치와 선언되는 방법에 따라 지역변수와 전역변수로 구분한다.
+				//1. function밖에서 변수를 선언하는 경우 - 전역변수
+				num1 = 100;
+				//4. function밖에서 var 키워드로 선언된변수 - 전역변수
+				var num4 = 400;
+				function test1() {
+					//2. function내부에서 선언하는 변수
+					//=> 변수가 선언된 function부터 실행되어야 사용할 수 있다.
+					num2= 200;
+					//3. function내부에서 var라는 키워드를 이용해서 변수를 선언하는 경우 - 지역변수(선언된 function내부에서만 사용할 수 있다.)
+					var num3 = 300;
+					
+					document.write("test1함수에서 num1의 사용====>"+num1+"<br/>");
+					document.write("test1함수에서 num2의 사용====>"+num2+"<br/>");
+					document.write("test1함수에서 num3의 사용====>"+num3+"<br/>");
+					document.write("test1함수에서 num4의 사용====>"+num4+"<br/>");
+					document.write("<hr/>");
+				}
+				function test2() {
+					document.write("test2함수에서 num1의 사용====>"+num1+"<br/>");
+					document.write("test2함수에서 num2의 사용====>"+num2+"<br/>");
+					/* document.write("test2함수에서 num3의 사용====>"+num3+"<br/>"); */
+					document.write("test2함수에서 num4의 사용====>"+num4+"<br/>");
+					document.write("<hr/>");
+				}
+		</script>
+	</head>
+	<body>
+			<script type="text/javascript">
+				test1();
+				test2();	
+				document.write("body에서 num1의 사용====>"+num1+"<br/>");
+				document.write("body에서 num2의 사용====>"+num2+"<br/>");
+				/* document.write("body에서 num3의 사용====>"+num3+"<br/>"); */
+				document.write("body에서 num4의 사용====>"+num4+"<br/>");
+				document.write("<hr/>");
+				window.
+			</script>
+	</body>
+</html>
